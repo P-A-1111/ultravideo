@@ -1,0 +1,45 @@
+[package]
+name = "ultravideo"
+version = "0.1.0"
+description = "ultravideo - streaming multiplataforma"
+edition = "2021"
+rust-version = "1.90"
+
+[lib]
+name = "ultravideo_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-deep-link = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "io-util", "net"] }
+futures = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+thiserror = "2"
+sha2 = "0.10"
+tracing = "0.1"
+ts-rs = { version = "10", features = ["serde-json-impl"] }
+
+# Habilitado quando o engine de torrent entrar (v0.2). Mantém o build base leve.
+librqbit = { version = "9", default-features = false, features = ["rust-tls"] }
+axum = "0.8"
+tokio-util = { version = "0.7", features = ["io"] }
+
+[features]
+default = ["torrent"]
+torrent = []
+export-bindings = []
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
