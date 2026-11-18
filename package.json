@@ -1,0 +1,41 @@
+{
+  "name": "ultravideo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "postbuild": "node scripts/minify-html.mjs",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:android:dev": "tauri android dev",
+    "addon:dev": "npm --prefix addons/test-addon run dev",
+    "upload:r2": "node scripts/upload-r2.mjs",
+    "gen:types": "cargo test --manifest-path src-tauri/Cargo.toml --features export-bindings export_bindings",
+    "check": "npm run build && cargo check --manifest-path src-tauri/Cargo.toml",
+    "lint": "cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-deep-link": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "hls.js": "^1.5.0",
+    "lucide-react": "^0.400.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "^3.900.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "wrangler": "^4.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "typescript": "~5.7.0",
+    "vite": "^6.0.0"
+  }
+}
