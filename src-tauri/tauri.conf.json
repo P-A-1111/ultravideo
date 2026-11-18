@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ultravideo",
+  "version": "0.1.0",
+  "identifier": "org.palv.ultra.video",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "ultravideo",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: http://asset.localhost data: https:; media-src 'self' asset: http://asset.localhost http://127.0.0.1:* https:; connect-src 'self' ipc: http://ipc.localhost https: http://127.0.0.1:* ws: wss:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://u-content.palv.org https://*.googlesyndication.com https://googleads.g.doubleclick.net; script-src 'self' https://pagead2.googlesyndication.com https://www.googletagservices.com"
+    }
+  },
+  "plugins": {
+    "deep-link": {
+      "desktop": { "schemes": ["ultravideo"] },
+      "mobile": [{ "scheme": ["ultravideo"] }]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all"
+  }
+}
