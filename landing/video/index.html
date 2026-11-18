@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ultravideo — your content, your rules</title>
+<meta name="description" content="A modern player with add-ons, live TV, torrents and local-first sync."/>
+<link rel="icon" type="image/png" href="/assets/mark.svg"/>
+<link rel="stylesheet" href="/assets/style.min.css"/>
+</head><body>
+<div class="orb a"></div><div class="orb b"></div>
+<header><div class="wrap nav">
+<a class="brand" href="/"><img src="/assets/mark.svg" alt="ultra"/>ultravideo</a>
+<nav class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="/">Ecosystem</a></nav>
+<div class="spacer"></div><a class="btn primary" href="/apk/ultravideo-v0.1.0.apk">Download APK</a>
+</div></header>
+<main>
+<div class="hero"><div class="wrap">
+<span class="tag"><i></i> Android · direct APK</span>
+<img class="logo-hero" src="/assets/wordmark.svg" alt="ultravideo"/>
+<h1>Your content.<br><em>Your rules.</em></h1>
+<p class="lead">A player, not a platform. Add-ons supply the sources; you keep the library, the cache and the choice.</p>
+<div class="cta"><a class="btn primary" href="/apk/ultravideo-v0.1.0.apk">⬇ Download for Android</a><a class="btn" href="#features">See features</a></div>
+<div class="stats reveal glass">
+<div class="stat"><strong data-count="11557">0</strong><span>public channels</span></div>
+<div class="stat"><strong data-count="310">0</strong><span>languages</span></div>
+<div class="stat"><strong data-count="2">0</strong><span>GB cache default</span></div>
+<div class="stat"><strong>24h</strong><span>seeding cap</span></div>
+</div>
+</div></div>
+<section id="features"><div class="wrap">
+<h2 class="reveal">Everything you need.<br><em>Nothing you didn't ask for.</em></h2>
+<p class="sub reveal">No content is bundled. Every source is an add-on you install, and every optional feature is yours to switch off.</p>
+<div class="grid">
+<div class="card glass reveal"><div class="ico">▣</div><h3>Add-ons by URL</h3><p>Stremio-compatible manifests: catalog, meta, stream and subtitles. Resources are filtered before any HTTP call.</p></div>
+<div class="card glass reveal"><div class="ico">◉</div><h3>Live TV</h3><p>11,557 public channels, 310 languages, EPG from meta.videos, category and country filters.</p></div>
+<div class="card glass reveal"><div class="ico">⇩</div><h3>Torrent engine</h3><p>librqbit streaming with seek, 32 MB lookahead, 2 GB LRU cache, peer ID UVIDEOclient and opt-in 24h seeding.</p></div>
+<div class="card glass reveal"><div class="ico">◈</div><h3>Sync that you own</h3><p>SQLite local-first, signed JSON export, SHA-256 checksum, bidirectional last-write-wins merge. Cloud is optional.</p></div>
+<div class="card glass reveal"><div class="ico">◐</div><h3>Made for your phone</h3><p>Bottom navigation, safe-area, touch-first layout, dark theme with violet accents. English throughout.</p></div>
+<div class="card glass reveal"><div class="ico">⚡</div><h3>Small and quick</h3><p>Rust core on Tauri v2. ~107 KB gzip initial JS, HLS loaded only when a stream needs it.</p></div>
+<div class="card glass reveal"><div class="ico">◎</div><h3>Discord sign-in</h3><p>Design-ready OAuth2 flow. Optional free account for sync, with tokens kept in the OS keystore.</p></div>
+<div class="card glass reveal"><div class="ico">✦</div><h3>Support without spam</h3><p>Optional rewarded ads grant in-app credits. No interstitial in the player, no data sold behind your back.</p></div>
+</div></div></section>
+<section><div class="wrap showcase">
+<div><h2 class="reveal">Built for <em>mobile.</em></h2>
+<p class="sub reveal">Every screen uses the same view model: sidebar on desktop, bottom bar on Android. No duplicated UI.</p>
+<ol class="steps reveal" id="how">
+<li><strong>Install the APK</strong>Direct download, no store, no middleman.</li>
+<li><strong>Add your sources</strong>Paste a manifest URL or pick a verified add-on.</li>
+<li><strong>Watch and sync</strong>Continue watching anywhere with your own sync file.</li>
+</ol></div>
+<div class="phone reveal"><div class="notch"><i></i></div><div class="screen"><span class="tag">Featured</span><h4>Beyond the Stars</h4><div class="bar"><span>Watch now</span><span>+ My list</span></div><div class="row"><div></div><div></div><div></div></div></div></div>
+</div></section>
+<div class="blue"><div class="wrap">
+<h2>One app.<br><em>Every source.</em></h2>
+<p>Metadata from TMDB, TVMaze and AniList. Channels from public playlists. Torrents from add-ons. You decide what gets installed.</p>
+<div class="badges"><span>Stremio protocol</span><span>31851 channels cataloged</span><span>310 languages</span><span>Seek + Range</span><span>SHA-256 sync</span><span>Opt-in seeding</span><span>Dark / violet</span><span>English UI</span></div>
+</div></div>
+<div class="light"><div class="wrap">
+<h2>No content included.<br><em>That's the point.</em></h2>
+<p class="sub">ultravideo is a player and an add-on framework. Add-ons return metadata and URLs, never executable code. Illegal sources are never shipped — you choose them, and verified catalogs are reviewed first.</p>
+<div class="grid">
+<div class="card reveal"><div class="ico">◈</div><h3>Your library</h3><p>Favorites, watched flags and progress, mergeable across devices.</p></div>
+<div class="card reveal"><div class="ico">⇩</div><h3>Your cache</h3><p>Bounded by disk headroom, evicted by LRU, seeded only if you opt in.</p></div>
+<div class="card reveal"><div class="ico">◉</div><h3>Your catalog</h3><p>Community add-ons, moderated before they reach verified lists.</p></div>
+</div></div></div>
+<div class="final"><div class="wrap"><h2 class="reveal">Get <em>started.</em></h2><p class="sub reveal" style="margin-inline:auto">Direct APK, updates from your own channel.</p><a class="btn primary" href="/apk/ultravideo-v0.1.0.apk">⬇ Download ultravideo v0.1.0</a></div></div>
+</main>
+<footer><div class="wrap"><span>© 2026 ultravideo · P-A-1111</span><span><a href="/legal/terms.html">Terms</a> · <a href="/legal/privacy.html">Privacy</a> · <a href="/legal/dmca.html">DMCA</a></span></div></footer>
+<script src="/assets/app.min.js"></script>
+</body></html>
