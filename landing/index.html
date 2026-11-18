@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ultravideo — your content, your rules</title>
+<meta name="description" content="Cross-platform player with add-ons, IPTV, torrent and local-first sync." />
+<link rel="icon" type="image/png" href="/assets/logo-mark.png" />
+<style>
+:root{--bg:#09090e;--bg2:#11111a;--card:#16161f;--line:#2a2a39;--text:#f6f6fa;--muted:#9b9bad;--accent:#8b5cf6;--accent2:#a78bfa;--accent3:#6d28d9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(9,9,14,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:28px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.04em}
+.logo svg{width:30px;height:30px}
+.nav .spacer{flex:1}
+.nav links{display:flex;gap:26px;color:var(--muted);font-size:13px;font-weight:600}
+.nav links a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:8px;border:1px solid var(--line);background:linear-gradient(180deg,#242433,#171721);color:#fff;font-weight:700;font-size:13px}
+.btn.primary{background:linear-gradient(180deg,var(--accent2),var(--accent) 55%,var(--accent3));border-color:#4c1d95;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 0 #3b0764,0 10px 24px rgba(0,0,0,.5)}
+.btn:hover{filter:brightness(1.1)}
+.hero{position:relative;overflow:hidden;padding:96px 0 70px;background:radial-gradient(ellipse at 70% -10%,rgba(139,92,246,.28),transparent 60%),linear-gradient(180deg,#11111a,var(--bg))}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.5}
+.badge{display:inline-block;padding:5px 12px;border-radius:999px;border:1px solid #4c1d95;background:linear-gradient(180deg,var(--accent2),var(--accent3));color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+h1{margin:20px 0 14px;font-size:clamp(38px,6vw,68px);line-height:1.03;letter-spacing:-.055em;text-shadow:0 -1px 0 #000}
+h1 em{font-style:normal;color:var(--accent2)}
+.lead{max-width:640px;color:#c8c8d6;font-size:18px;margin:0 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:64px}
+.stat{padding:20px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#16161f,#111119);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.stat strong{display:block;font-size:30px;letter-spacing:-.04em;color:var(--accent2)}
+.stat span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+section{padding:78px 0}
+h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.04em;margin:0 0 12px}
+.sub{color:var(--muted);max-width:620px;margin:0 0 36px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{padding:26px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(180deg,#171721,#111119);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 24px rgba(0,0,0,.35)}
+.card .ico{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg,var(--accent2),var(--accent3));color:#fff;font-size:20px;margin-bottom:16px}
+.card h3{margin:0 0 8px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.phone{width:280px;margin:auto;border:9px solid #262635;border-radius:34px;background:#0b0b10;box-shadow:0 24px 60px rgba(0,0,0,.65);overflow:hidden}
+.phone .top{height:22px;background:#14141d;display:flex;align-items:center;justify-content:center}
+.phone .top i{width:70px;height:9px;border-radius:6px;background:#000;display:block}
+.phone .mini{padding:14px}
+.phone .mini h4{margin:10px 0;font-size:22px;text-transform:uppercase;line-height:1.05}
+.phone .bar{display:flex;gap:7px;margin-top:14px}
+.phone .bar span{flex:1;height:30px;border-radius:6px;background:linear-gradient(180deg,var(--accent2),var(--accent3));font-size:9px;display:grid;place-items:center;color:#fff;font-weight:800;text-transform:uppercase}
+.phone .bar span+span{background:#20202d}
+.phone .row{display:flex;gap:7px;margin-top:16px}
+.phone .row div{width:64px;height:82px;border-radius:6px;background:linear-gradient(160deg,#3a2a5c,#12121c)}
+ol{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:18px}
+ol li{counter-increment:s;position:relative;padding-left:54px;color:var(--muted)}
+ol li:before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--accent2),var(--accent3));color:#fff;font-weight:800}
+ol li strong{display:block;color:var(--text);font-size:16px}
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a:hover{color:#fff}
+@media(max-width:800px){.showcase{grid-template-columns:1fr}.nav links{display:none}.hero{padding:64px 0 50px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#"><svg viewBox="0 0 40 40"><path d="M6 5h7v20a7 7 0 0 0 14 0V5h7v20a14 14 0 0 1-28 0Z" fill="#fff"/><path d="M28 6 38 20 28 34Z" fill="#8b5cf6"/></svg>ultravideo</a>
+  <links><a href="#features">Features</a><a href="#how">How it works</a><a href="#download">Download</a></links>
+  <div class="spacer"></div>
+  <a class="btn primary" href="/apk/ultravideo-v0.1.0.apk">Download APK</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <span class="badge">Android · direct APK</span>
+  <h1>Your content.<br><em>Your rules.</em></h1>
+  <p class="lead">A modern player with add-ons, live TV, torrents and sync that belongs to you. No content is bundled — you choose the sources.</p>
+  <div class="cta">
+    <a class="btn primary" href="/apk/ultravideo-v0.1.0.apk">⬇ Download for Android</a>
+    <a class="btn" href="#features">See features</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong>11,557</strong><span>public channels</span></div>
+    <div class="stat"><strong>310</strong><span>languages</span></div>
+    <div class="stat"><strong>100%</strong><span>local-first</span></div>
+    <div class="stat"><strong>Stremio</strong><span>add-on protocol</span></div>
+  </div>
+</div></div>
+
+<section id="features"><div class="wrap">
+  <h2>Everything you need. Nothing you didn't ask for.</h2>
+  <p class="sub">A lean app: content comes from the add-ons you install. Your data stays on your device.</p>
+  <div class="cards">
+    <div class="card"><div class="ico">▣</div><h3>Add-ons by URL</h3><p>Stremio-compatible JSON manifests. Catalogs, metadata, streams and subtitles from any source.</p></div>
+    <div class="card"><div class="ico">◉</div><h3>Live TV</h3><p>Over 11,000 public channels organized by category, country and language, with an EPG guide.</p></div>
+    <div class="card"><div class="ico">⇩</div><h3>Torrent engine</h3><p>Streaming with seek, bounded cache and optional seeding. You control space, time and when it stops.</p></div>
+    <div class="card"><div class="ico">◈</div><h3>File sync</h3><p>Export a file, drop it on Drive and import it on another device. Or sync with your own cloud.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap showcase">
+  <div>
+    <h2>Built for mobile.</h2>
+    <p class="sub">Bottom navigation, touch gestures, a dark theme with violet accents and native-like performance.</p>
+    <ol id="how">
+      <li><strong>Install the APK</strong>Download and install directly — no store, no middleman.</li>
+      <li><strong>Add your sources</strong>Paste a manifest URL or pick a verified add-on.</li>
+      <li><strong>Watch and sync</strong>Continue watching on any device with your sync file.</li>
+    </ol>
+  </div>
+  <div class="phone"><div class="top"><i></i></div><div class="mini">
+    <span class="badge">Featured</span>
+    <h4>Beyond the Stars</h4>
+    <div class="bar"><span>Watch now</span><span>+ My list</span></div>
+    <div class="row"><div></div><div></div><div></div></div>
+  </div></div>
+</div></section>
+
+<section id="download"><div class="wrap" style="text-align:center">
+  <h2>Get started.</h2>
+  <p class="sub" style="margin-inline:auto">Direct APK, updates from your own channel. No account required.</p>
+  <a class="btn primary" href="/apk/ultravideo-v0.1.0.apk">⬇ Download ultravideo v0.1.0</a>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 ultravideo · P-A-1111</span>
+  <span><a href="/legal/terms.html">Terms</a> · <a href="/legal/privacy.html">Privacy</a> · <a href="/legal/dmca.html">DMCA</a></span>
+</div></footer>
+</body>
+</html>
