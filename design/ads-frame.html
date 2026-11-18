@@ -1,0 +1,30 @@
+<!doctype html>
+<!--
+  Reference: host this file on YOUR HTTPS domain at /ads/frame.html.
+  The Tauri app loads it in an isolated iframe (see DesktopAd.tsx).
+  Replace ca-pub-XXXX / slot with your Google Ad Manager or AdSense IDs.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ad</title>
+  <style>
+    html, body { margin: 0; background: transparent; }
+    ins.adsbygoogle { display: block; width: 100%; min-height: 100px; }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"
+          crossorigin="anonymous"></script>
+</head>
+<body>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXX"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</body>
+</html>
