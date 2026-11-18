@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ultravideo:manifest:1",
+  "title": "Manifesto de add-on ultravideo (protocolo Stremio)",
+  "type": "object",
+  "required": ["id", "version", "name", "types"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "version": { "type": "string" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "logo": { "type": "string" },
+    "background": { "type": "string" },
+    "types": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "enum": ["movie", "series", "channel", "tv", "anime", "*"] }
+    },
+    "idPrefixes": { "type": "array", "items": { "type": "string" } },
+    "resources": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "string", "enum": ["catalog", "meta", "stream", "subtitles", "addon_catalog", "all"] },
+          {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": true,
+            "properties": {
+              "name": { "type": "string" },
+              "types": { "type": "array", "items": { "type": "string" } },
+              "idPrefixes": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        ]
+      }
+    },
+    "catalogs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "id", "name"],
+        "additionalProperties": true,
+        "properties": {
+          "type": { "type": "string" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "extra": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name"],
+              "additionalProperties": true,
+              "properties": {
+                "name": { "type": "string" },
+                "isRequired": { "type": "boolean", "default": false },
+                "options": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "config": { "type": "array", "items": { "type": "object" } }
+  }
+}
