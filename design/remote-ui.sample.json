@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-18T00:00:00Z",
+  "theme": {
+    "accent": "#8b5cf6",
+    "accentHi": "#a78bfa",
+    "accentDark": "#6d28d9"
+  },
+  "copy": {
+    "board.headline": "Movies, series and TV on ultravideo",
+    "board.continue": "Continue watching",
+    "board.trending": "Trending on ultravideo"
+  },
+  "sections": {
+    "continueWatching": { "enabled": true },
+    "trending": { "enabled": true, "title": "Trending now" },
+    "featuredPanel": { "enabled": true }
+  }
+}
