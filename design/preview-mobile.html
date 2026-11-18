@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ultravideo — mobile preview</title>
+<link rel="icon" type="image/png" href="../public/favicon.png" />
+<style>
+:root{--bg:#0b0b10;--surface:#171721;--surface-hi:#20202d;--border:#2c2c3b;--text:#f6f6fa;--muted:#9b9bad;--accent:#8b5cf6;--accent-hi:#a78bfa;--accent-dark:#6d28d9;--gold:#f5b301}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased;max-width:430px;margin-inline:auto;min-height:100vh;position:relative;padding-bottom:96px}
+h1,h2{text-shadow:0 -1px 0 rgba(0,0,0,.8)}
+.status{display:flex;justify-content:space-between;align-items:center;padding:10px 18px 4px;font-size:11px;font-weight:700;color:#e9e9f2}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:96px;height:22px;border-radius:14px;background:#000}
+.navbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;padding:10px 16px 12px;background:linear-gradient(180deg,#1b1b27,#101018);border-bottom:1px solid var(--border)}
+.navbar img{height:22px;width:auto}
+.spacer{flex:1}
+.coin{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;border:1px solid #4c1d95;background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));box-shadow:inset 0 1px 0 rgba(255,255,255,.32);font-size:10px;font-weight:800;color:#fff}
+.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#57576b,#2a2a38);border:1px solid rgba(255,255,255,.16);color:#fff;font-weight:800;font-size:12px}
+.ad{margin:22px 16px 0;border:1px dashed rgba(167,139,250,.45);border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#1a1826,#111119)}
+.ad-art{position:relative;min-height:82px;display:grid;place-items:center;gap:3px;text-align:center;color:var(--accent-hi);background:radial-gradient(ellipse at 50% 0,rgba(139,92,246,.18),transparent 70%)}
+.ad-art b{color:#fff;font-size:12px}.ad-art small{color:var(--muted);font-size:9px}
+.ad-lab{position:absolute;top:7px;right:7px;padding:2px 6px;border-radius:3px;font-size:8px;text-transform:uppercase;letter-spacing:.1em;background:rgba(0,0,0,.5);border:1px solid #3d3d51;color:var(--muted)}
+.ad-row{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-top:1px solid var(--border)}
+.ad-row b{display:block;font-size:11px;color:#fff}.ad-row small{color:var(--muted);font-size:9px}
+.ad-btn{padding:7px 11px;border-radius:5px;border:1px solid #4c1d95;background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));color:#fff;font-size:9px;font-weight:800;text-transform:uppercase}
+.hero{position:relative;min-height:420px;display:flex;align-items:flex-end;padding:22px 18px 24px;overflow:hidden;background:radial-gradient(ellipse at 70% 20%,rgba(120,110,170,.45),transparent 55%),linear-gradient(160deg,#2a2340,#14141c 60%,#0b0b10)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0b0b10 0%,rgba(11,11,16,.4) 45%,transparent 75%)}
+.hero>*{position:relative;z-index:1}
+.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));border:1px solid #4c1d95;color:#fff}
+.hero h1{margin:10px 0 6px;font-size:34px;line-height:1.02;letter-spacing:-.045em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;color:#d2d2df;font-weight:600;font-size:12px}
+.meta .star{color:var(--gold)}
+.hero p{color:#c2c2d0;font-size:12.5px;margin:12px 0 0;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.actions{display:flex;gap:9px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:1;padding:13px 10px;border-radius:6px;font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;text-shadow:0 -1px 0 rgba(0,0,0,.5)}
+.btn-primary{background:linear-gradient(180deg,var(--accent-hi),var(--accent) 50%,var(--accent-dark));border:1px solid #4c1d95;box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 3px 0 #3b0764,0 6px 14px rgba(0,0,0,.5);color:#fff}
+.btn-outline{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.4);color:#fff}
+.section{padding:0 16px;margin-top:24px}
+.head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.head h2{margin:0;font-size:17px;font-weight:800}
+.head small{color:var(--accent-hi);font-size:9px;text-transform:uppercase;letter-spacing:.09em}
+.track{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin-right:-16px;padding-right:16px}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 176px;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:linear-gradient(180deg,var(--surface-hi),var(--surface));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 5px 14px rgba(0,0,0,.45)}
+.card.small{flex-basis:132px}
+.art{aspect-ratio:16/10;display:grid;place-items:center;background:linear-gradient(155deg,var(--g1),var(--g2));text-align:center;color:#fff;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:11px;padding:10px}
+.card.small .art{aspect-ratio:2/3}
+.body{padding:8px 9px 10px}
+.body strong{display:block;font-size:11px;color:#cbb8ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.body small{color:#757587;font-size:9px}
+.progress{height:4px;background:rgba(255,255,255,.14)}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-hi));box-shadow:0 0 7px rgba(167,139,250,.7)}
+.chips{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:16px -16px 0;padding:0 16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:linear-gradient(180deg,var(--surface-hi),var(--surface));color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.chip.active{background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));border-color:#4c1d95;color:#fff}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:20;display:flex;justify-content:space-around;padding:8px 4px 14px;background:linear-gradient(180deg,rgba(32,32,45,.98),rgba(10,10,16,.99));border-top:1px solid #3d3d51;box-shadow:0 -6px 20px rgba(0,0,0,.5)}
+.bottom a{display:grid;place-items:center;gap:3px;min-width:56px;color:var(--muted);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-decoration:none}
+.bottom a.active{color:#d8c9ff;text-shadow:0 0 12px rgba(167,139,250,.7)}
+.bottom a.active::before{content:"";width:32px;height:2px;border-radius:2px;background:var(--accent-hi);box-shadow:0 0 10px var(--accent);margin-bottom:2px}
+.ico{font-size:19px;line-height:1}
+</style>
+</head>
+<body>
+<div class="status"><span>14:00</span><span>●●● ▰</span></div>
+<div class="notch"></div>
+<header class="navbar"><img src="../src/assets/uvideo-mark-sm.png" alt="ultravideo" /><div class="spacer"></div><span class="coin">◈ 2h</span><div class="avatar">P</div></header>
+
+<section class="hero">
+  <div>
+    <span class="badge">Featured</span>
+    <h1>Beyond the Stars</h1>
+    <div class="meta"><span>2026</span><span>2h 15m</span><span>Sci-Fi</span><span class="star">★ 8.7</span></div>
+    <p>An epic science fiction and space odyssey, exploring the furthest reaches of the cosmos and the people who dare to cross them.</p>
+    <div class="actions"><span class="btn btn-primary">▶ Watch now</span><span class="btn btn-outline">+ My list</span></div>
+  </div>
+</section>
+
+<div class="chips"><span class="chip active">Popular</span><span class="chip">New releases</span><span class="chip">Series</span><span class="chip">Anime</span><span class="chip">Live TV</span></div>
+
+<section class="section">
+  <div class="head"><h2>Continue watching</h2><small>4 titles</small></div>
+  <div class="track">
+    <div class="card"><div class="art" style="--g1:#3b2b5c;--g2:#101820">Beyond the Stars</div><div class="body"><strong>Beyond the Stars</strong><small>2026 · 68%</small></div><div class="progress"><i style="width:68%"></i></div></div>
+    <div class="card"><div class="art" style="--g1:#1f4e5f;--g2:#0d1620">Frieren</div><div class="body"><strong>Frieren</strong><small>2023 · 41%</small></div><div class="progress"><i style="width:41%"></i></div></div>
+    <div class="card"><div class="art" style="--g1:#6b3a1f;--g2:#1a1010">Samurai</div><div class="body"><strong>Samurai</strong><small>2024 · 22%</small></div><div class="progress"><i style="width:22%"></i></div></div>
+  </div>
+</section>
+
+<div class="ad">
+  <div class="ad-art"><span class="ad-lab">Sponsored</span><span style="font-size:22px">◈</span><b>Ad placeholder</b><small>Rewarded ads appear here</small></div>
+  <div class="ad-row"><div><b>Watch an ad · +1h</b><small>Balance: 2h ucoins</small></div><span class="ad-btn">Watch</span></div>
+</div>
+
+<section class="section">
+  <div class="head"><h2>Popular movies</h2><small>add-on</small></div>
+  <div class="track">
+    <div class="card small"><div class="art" style="--g1:#4a3b2a;--g2:#12100c">Fantasia</div><div class="body"><strong>Fantasia</strong><small>★ 8.0</small></div></div>
+    <div class="card small"><div class="art" style="--g1:#1d2b3a;--g2:#0a0d12">Drama</div><div class="body"><strong>Drama</strong><small>★ 8.0</small></div></div>
+    <div class="card small"><div class="art" style="--g1:#3a2a5e;--g2:#0e0b18">Animation</div><div class="body"><strong>Animation</strong><small>★ 9.0</small></div></div>
+    <div class="card small"><div class="art" style="--g1:#5a2a2a;--g2:#160c0c">Interestelar</div><div class="body"><strong>Interstellar</strong><small>★ 8.6</small></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="head"><h2>Trending on ultravideo</h2><small>trending</small></div>
+  <div class="track">
+    <div class="card small"><div class="art" style="--g1:#2a5c4a;--g2:#0a1410">Matrix</div><div class="body"><strong>Matrix</strong><small>1999</small></div></div>
+    <div class="card small"><div class="art" style="--g1:#5c4a2a;--g2:#14100a">A Origem</div><div class="body"><strong>Inception</strong><small>2010</small></div></div>
+    <div class="card small"><div class="art" style="--g1:#2a3a5c;--g2:#0a0e18">Batman</div><div class="body"><strong>Dark Knight</strong><small>2008</small></div></div>
+  </div>
+</section>
+
+<nav class="bottom">
+  <a class="active"><span class="ico">⌂</span>Home</a>
+  <a><span class="ico">◉</span>Discover</a>
+  <a><span class="ico">▤</span>Library</a>
+  <a><span class="ico">⊞</span>Add-ons</a>
+  <a><span class="ico">⚙</span>Settings</a>
+</nav>
+</body>
+</html>
