@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ultravideo — preview do design</title>
+<link rel="icon" type="image/png" href="../public/favicon.png" />
+<style>
+:root{--bg:#0b0b10;--surface:#171721;--surface-hi:#20202d;--border:#2c2c3b;--border-hi:#3d3d51;--text:#f6f6fa;--muted:#9b9bad;--accent:#8b5cf6;--accent-hi:#a78bfa;--accent-dark:#6d28d9;--gold:#f5b301}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased}
+h1,h2{text-shadow:0 -1px 0 rgba(0,0,0,.8)}
+.container{width:min(980px,calc(100% - 40px));margin-inline:auto}
+.utility-bar{background:linear-gradient(180deg,#8b5cf6,#5b21b6);border-bottom:1px solid #4c1d95;box-shadow:inset 0 1px 0 rgba(255,255,255,.22);color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.utility-bar .container{display:flex;align-items:center;justify-content:space-between;height:27px}
+.utility-links{display:flex;gap:16px}
+.navbar{background:linear-gradient(180deg,#242433,#16161f);border:1px solid var(--border);border-top:0;border-radius:0 0 6px 6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 14px rgba(0,0,0,.5)}
+.navbar-inner{display:flex;align-items:center;gap:16px;padding:8px 14px}
+.brand{display:flex;align-items:center;gap:8px}
+.brand-mark{width:29px;height:29px;border-radius:6px;display:grid;place-items:center;background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));border:1px solid #4c1d95;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 2px 0 #3b0764;color:#fff;font-weight:900}
+.brand-word{font-size:17px;font-weight:800;letter-spacing:-.045em}.brand-word em{color:var(--accent-hi);font-style:normal}
+.nav{display:flex;gap:2px}.nav a{padding:7px 11px;border-radius:4px;color:#b9b9c9;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.nav a.active{color:#fff;background:linear-gradient(180deg,#3a2a5c,#241a3d);border:1px solid #4c3a72;box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.spacer{flex:1}
+.search{display:flex;align-items:center;gap:7px;width:180px;padding:6px 10px;border-radius:4px;border:1px solid var(--border);background:linear-gradient(180deg,#0f0f17,#0a0a11);box-shadow:inset 0 1px 3px rgba(0,0,0,.7);color:var(--muted);font-size:11px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:8px 14px;border-radius:5px;border:1px solid var(--border-hi);background:linear-gradient(180deg,var(--surface-hi),var(--surface));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 2px 4px rgba(0,0,0,.45);font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;text-shadow:0 -1px 0 rgba(0,0,0,.5)}
+.btn-primary{background:linear-gradient(180deg,var(--accent-hi) 0%,var(--accent) 50%,var(--accent-dark) 100%);border-color:#4c1d95;box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 3px 0 #3b0764,0 6px 14px rgba(0,0,0,.5);color:#fff}
+.btn-mini{padding:5px 9px;font-size:9px}
+.hero-unit{position:relative;overflow:hidden;margin-top:16px;padding:50px 32px 26px;text-align:center;border-radius:8px;border:1px solid var(--border);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 24px rgba(0,0,0,.55);background:radial-gradient(ellipse at 50% -10%,rgba(139,92,246,.28),transparent 60%),linear-gradient(150deg,#241a3d,#101018 55%,#1a1330)}
+.hero-unit::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,16,.35),rgba(11,11,16,.85));pointer-events:none}
+.hero-unit>*{position:relative;z-index:1}
+.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));border:1px solid #4c1d95;box-shadow:inset 0 1px 0 rgba(255,255,255,.32);color:#fff}
+.hero-unit h1{margin:12px 0 8px;font-size:40px;line-height:1.14;letter-spacing:-.035em}.hero-unit h1 em{color:var(--accent-hi);font-style:normal}
+.lead{margin:0 0 18px;color:#cfcfdc;font-size:16px}
+.signup{display:flex;justify-content:center;gap:7px;max-width:440px;margin:0 auto}
+.input{flex:1;padding:9px 11px;border-radius:5px;border:1px solid var(--border);background:linear-gradient(180deg,#0e0e16,#09090f);box-shadow:inset 0 1px 3px rgba(0,0,0,.7);color:var(--text)}
+.signup-hint{margin-top:7px;color:#747486;font-size:10px}
+.trust-row{display:flex;justify-content:center;gap:26px;margin-top:24px;padding-top:15px;border-top:1px solid var(--border)}
+.trust-item{display:flex;align-items:center;gap:9px;text-align:left;color:var(--accent-hi)}
+.trust-item strong{display:block;color:var(--text);font-size:12px}.trust-item small{color:var(--muted);font-size:10px}
+.breadcrumb{display:flex;gap:7px;list-style:none;margin:14px 0 0;padding:7px 12px;background:linear-gradient(180deg,#1a1a25,#14141d);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:11px}.breadcrumb a{color:var(--accent-hi)}
+.chips{display:flex;gap:6px;margin-top:16px}
+.chip{padding:6px 11px;border-radius:4px;border:1px solid var(--border-hi);background:linear-gradient(180deg,var(--surface-hi),var(--surface));box-shadow:inset 0 1px 0 rgba(255,255,255,.09);color:var(--muted);font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.chip.active{background:linear-gradient(180deg,var(--accent-hi),var(--accent-dark));border-color:#4c1d95;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.row{margin-top:26px}.row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.row-head h2{margin:0;font-size:16px;font-weight:800}.row-tools{display:flex;align-items:center;gap:6px}
+.row-tools small{color:var(--accent-hi);font-size:9px;text-transform:uppercase;letter-spacing:.09em;margin-right:5px}
+.arrow{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--border-hi);background:linear-gradient(180deg,#2a2a3a,#171721);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 2px 4px rgba(0,0,0,.5);color:#cfcfdd;font-size:15px;line-height:1}
+.cards{display:flex;gap:9px}
+.card{position:relative;flex:0 0 118px;border-radius:5px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,var(--surface-hi),var(--surface));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 4px 11px rgba(0,0,0,.45)}
+.poster{width:100%;aspect-ratio:2/3;display:grid;place-items:center;padding:8px;text-align:center;background:linear-gradient(155deg,var(--g1),var(--g2));position:relative}
+.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent 60%)}
+.poster b{position:relative;z-index:1;color:#fff;font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+.card-body{padding:7px 7px 9px}.card-body strong{display:block;font-size:10px;color:#cbb8ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-body small{color:#757587;font-size:9px}
+.rating{position:absolute;top:5px;right:5px;z-index:2;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;background:linear-gradient(180deg,#ffd95e,#e29500);border:1px solid #a86f00;color:#2b1a00}
+.panel{border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-top:26px;background:linear-gradient(180deg,#181822,#111119);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 3px 10px rgba(0,0,0,.4)}
+.panel-head{padding:9px 13px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;background:linear-gradient(180deg,#292939,#1b1b27);border-bottom:1px solid var(--border);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.panel-body{padding:14px}.premium{display:grid;grid-template-columns:repeat(auto-fill,minmax(106px,1fr));gap:8px}.premium .card{width:100%;flex:initial}
+.more{display:flex;margin:14px auto 0;min-width:260px}
+.note{text-align:center;color:#636375;font-size:10px;margin:18px 0 26px;text-transform:uppercase;letter-spacing:.1em}
+</style>
+</head>
+<body>
+<div class="utility-bar"><div class="container"><span>ultravideo · filmes, séries e TV</span><span class="utility-links"><span>Entrar</span><span>Assinar</span></span></div></div>
+<header class="navbar"><div class="container navbar-inner">
+  <div class="brand"><img src="../src/assets/uvideo-mark-sm.png" alt="ultravideo" style="height:24px;width:auto;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.65))" /></div>
+  <nav class="nav"><a class="active">Início</a><a>Descobrir</a><a>Biblioteca</a><a>Add-ons</a><a>Ajustes</a></nav>
+  <div class="spacer"></div>
+  <div class="search">⌕ &nbsp; Buscar...</div>
+  <span class="btn btn-primary btn-mini">Assinar</span>
+</div></header>
+
+<div class="container">
+  <section class="hero-unit">
+    <span class="badge">Tudo em um só lugar</span>
+    <h1>Filmes, séries e televisão <em>no ultravideo</em></h1>
+    <p class="lead">Descubra, organize e assista. Grátis no seu aparelho, com sincronização por arquivo quando quiser.</p>
+    <div class="signup"><div class="input">Seu e-mail</div><span class="btn btn-primary">Começar agora »</span></div>
+    <div class="signup-hint">Grátis para usar · sem cartão · seus dados ficam no seu aparelho</div>
+    <div class="trust-row">
+      <div class="trust-item">▣<div><strong>Milhares de títulos</strong><small>catálogos via add-ons</small></div></div>
+      <div class="trust-item">▤<div><strong>TV, tablet e PC</strong><small>assista onde quiser</small></div></div>
+      <div class="trust-item">⇩<div><strong>Continue assistindo</strong><small>sync por arquivo ou nuvem</small></div></div>
+    </div>
+  </section>
+
+  <ul class="breadcrumb"><li>Início</li><li>/</li><li>Catálogos</li></ul>
+  <div class="chips"><span class="chip active">Populares</span><span class="chip">Lançamentos</span><span class="chip">Séries</span><span class="chip">Animes</span></div>
+
+  <section class="row">
+    <div class="row-head"><h2>Continue assistindo</h2><div class="row-tools"><small>4 títulos</small><span class="arrow">‹</span><span class="arrow">›</span></div></div>
+    <div class="cards">
+      <div class="card"><div class="poster" style="--g1:#3b2b5c;--g2:#101820"><b>Beyond the Stars</b></div><div class="card-body"><strong>Beyond the Stars</strong><small>2026 · 68%</small></div></div>
+      <div class="card"><div class="poster" style="--g1:#1f4e5f;--g2:#0d1620"><b>Frieren</b></div><div class="card-body"><strong>Frieren</strong><small>2023 · 41%</small></div></div>
+      <div class="card"><div class="poster" style="--g1:#6b3a1f;--g2:#1a1010"><b>Samurai</b></div><div class="card-body"><strong>Samurai</strong><small>2024 · 22%</small></div></div>
+      <div class="card"><div class="poster" style="--g1:#2c3f6b;--g2:#0c1020"><b>Orbit</b></div><div class="card-body"><strong>Orbit</strong><small>2025 · 15%</small></div></div>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="row-head"><h2>Populares · CDA/Popular</h2><div class="row-tools"><small>catálogo</small><span class="arrow">‹</span><span class="arrow">›</span></div></div>
+    <div class="cards">
+      <div class="card"><span class="rating">★ 9.3</span><div class="poster" style="--g1:#4a3b2a;--g2:#12100c"><b>Um Sonho de Liberdade</b></div><div class="card-body"><strong>Um Sonho de Liberdade</strong><small>1994 · Filme</small></div></div>
+      <div class="card"><span class="rating">★ 9.0</span><div class="poster" style="--g1:#1d2b3a;--g2:#0a0d12"><b>Batman</b></div><div class="card-body"><strong>O Cavaleiro das Trevas</strong><small>2008 · Filme</small></div></div>
+      <div class="card"><span class="rating">★ 8.8</span><div class="poster" style="--g1:#3a2a5e;--g2:#0e0b18"><b>A Origem</b></div><div class="card-body"><strong>A Origem</strong><small>2010 · Filme</small></div></div>
+      <div class="card"><span class="rating">★ 8.6</span><div class="poster" style="--g1:#5a2a2a;--g2:#160c0c"><b> Interestelar</b></div><div class="card-body"><strong>Interestelar</strong><small>2014 · Filme</small></div></div>
+      <div class="card"><span class="rating">★ 8.5</span><div class="poster" style="--g1:#274a3a;--g2:#0b1410"><b>Matrix</b></div><div class="card-body"><strong>Matrix</strong><small>1999 · Filme</small></div></div>
+      <div class="card"><span class="rating">★ 8.7</span><div class="poster" style="--g1:#4a3a1f;--g2:#120e08"><b>Fantasia</b></div><div class="card-body"><strong>Fantasia</strong><small>2020 · Anime</small></div></div>
+      <div class="card"><span class="rating">★ 8.4</span><div class="poster" style="--g1:#33324f;--g2:#0e0e18"><b>Drama</b></div><div class="card-body"><strong>Drama</strong><small>2021 · Série</small></div></div>
+      <div class="card"><span class="rating">★ 8.9</span><div class="poster" style="--g1:#1e4550;--g2:#0a1014"><b>Animation</b></div><div class="card-body"><strong>Animation</strong><small>2022 · Anime</small></div></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">Destaques ultravideo</div>
+    <div class="panel-body">
+      <div class="premium">
+        <div class="card"><div class="poster" style="--g1:#3d2a5c;--g2:#100c18"><b>KLER</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#5a3a1a;--g2:#140e08"><b>Jedna Dusza</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#2a3d5c;--g2:#0c1018"><b>Skrzżowanie</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#3a5c2a;--g2:#0e140a"><b>Pani Polskiego</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#5c2a3d;--g2:#180a10"><b>Jack Strong</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#4a4a2a;--g2:#12120a"><b>Miasto 44</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#2a5c4a;--g2:#0a1410"><b>Żagma</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#5c4a2a;--g2:#14100a"><b>Boże Ciało</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#3a2a4a;--g2:#0e0a14"><b>C；(C)ilu</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#2a3a5c;--g2:#0a0e18"><b>W Świetle Dnia</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#5c2a2a;--g2:#180a0a"><b>2 Mążki</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#4a2a5c;--g2:#120a18"><b>Cinderella</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#2a5c3a;--g2:#0a140e"><b>Chrzest</b></div></div>
+        <div class="card"><div class="poster" style="--g1:#3a4a5c;--g2:#0c1018"><b>18,12</b></div></div>
+      </div>
+      <span class="btn more">Ver mais títulos »</span>
+    </div>
+  </section>
+  <div class="note">preview estático · design em construção</div>
+</div>
+</body>
+</html>
