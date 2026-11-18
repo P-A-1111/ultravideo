@@ -1,0 +1,20 @@
+name = "ultra-content"
+main = "worker/index.mjs"
+compatibility_date = "2026-11-18"
+
+account_id = "93cc76c8e3e19e76ab3397746d04c73f"
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "ultra-content"
+
+[[routes]]
+pattern = "u-content.palv.org/*"
+zone_id = "f1581707749011668923c3f804c07e8e"
+
+[[routes]]
+pattern = "u-api.palv.org/*"
+zone_id = "f1581707749011668923c3f804c07e8e"
+
+[vars]
+METADATA_ORIGIN = "https://u-api.palv.org"
