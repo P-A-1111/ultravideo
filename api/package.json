@@ -4,9 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node api/server.mjs"
+    "start": "node server.mjs"
   },
   "engines": {
     "node": ">=22"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.55.0",
+    "playwright-core": "^1.55.0"
   }
 }
